@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <th:block th:include="fragments/header :: head(page=#{page.games}, action=#{action.create})"></th:block>
+</head>
+<body>
+<header th:replace="fragments/header :: header(#{page.games})"></header>
+<main class="container">
+    <div class="row">
+        <div class="col-8 offset-2">
+            <form action="/games/create" method="post" th:object="${game}">
+                <div class="card">
+                    <div class="card-header bg-dark text-center text-white" th:text="#{action.create} + ' ' + #{page.games}">Create Game</div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="name" th:text="#{game.name}">Name</label>
+                            <input type="text" class="form-control" id="name" name="name" th:field="*{name}" th:classappend="${#fields.hasErrors('name') ? 'is-invalid' : ''}" placeholder="Title">
+                            <div class="invalid-feedback" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="language" th:text="#{game.language}">Language</label>
+                            <select class="form-control custom-select" id="language" th:field="*{languages}" multiple>
+                                <option th:each="language : ${languages}" th:value="${language.id}" th:text="${language.name}">Language</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="card-footer text-muted text-right">
+                        <a href="/games" class="btn btn-secondary btn-sm"><i class="fas fa-chevron-circle-left"></i></a>
+                        <button type="reset" class="btn btn-secondary btn-sm"><i class="fas fa-undo"></i></button>
+                        <button type="submit" class="btn btn-primary btn-sm"><i class="far fa-save"></i></button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</main>
+<footer th:replace="fragments/footer :: footer"></footer>
+<div th:replace="fragments/footer :: script"></div>
+</body>
+</html>

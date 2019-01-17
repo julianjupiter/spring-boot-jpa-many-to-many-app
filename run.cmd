@@ -1,0 +1,1 @@
+.\mvnw.cmd clean package && java -jar .\target\spring-boot-jpa-many-to-many-app-0.0.1-SNAPSHOT.jar
