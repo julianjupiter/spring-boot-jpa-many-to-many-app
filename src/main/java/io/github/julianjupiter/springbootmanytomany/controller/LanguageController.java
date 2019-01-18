@@ -15,7 +15,7 @@ import javax.validation.Valid;
 @Controller
 @RequestMapping("/languages")
 public class LanguageController {
-    private LanguageService languageService;
+    private final LanguageService languageService;
 
     public LanguageController(LanguageService languageService) {
         this.languageService = languageService;

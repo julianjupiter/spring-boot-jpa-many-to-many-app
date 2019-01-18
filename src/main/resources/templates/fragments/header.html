@@ -26,14 +26,24 @@
                         <li class="nav-item" th:classappend="${#strings.contains(page, 'Home')} ? 'active' : ''">
                             <a class="nav-link" href="/"><span th:text="#{page.home}">Home</span> <span class="sr-only">(current)</span></a>
                         </li>
-                        <li class="nav-item" th:classappend="${#strings.contains(page, 'Layers')} ? 'active' : ''">
-                            <a class="nav-link" href="/layers" th:text="#{page.layers}">Layers</a>
+                        <li class="nav-item dropdown" th:classappend="${#strings.contains(page, 'My Layers') || #strings.contains(page, 'My Games')} ? 'active' : ''">
+                            <a class="nav-link dropdown-toggle" href="#" id="myGamesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                My Games
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="myGamesDropdown">
+                                <a class="dropdown-item" href="/layers">Layers</a>
+                                <a class="dropdown-item" href="/layers/games">Games</a>
+                            </div>
                         </li>
-                        <li class="nav-item" th:classappend="${#strings.contains(page, 'Games')} ? 'active' : ''">
-                            <a class="nav-link" href="/games" th:text="#{page.games}">Categories</a>
-                        </li>
-                        <li class="nav-item" th:classappend="${#strings.contains(page, 'Languages')} ? 'active' : ''">
-                            <a class="nav-link" href="/languages" th:text="#{page.languages}">Languages</a>
+                        <li class="nav-item dropdown" th:classappend="${#strings.contains(page, 'Games') || #strings.contains(page, 'Languages') || #strings.contains(page, 'Genres')} ? 'active' : ''">
+                            <a class="nav-link dropdown-toggle" href="#" id="adminDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Admin
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="adminDropdown">
+                                <a class="dropdown-item" href="/games">Games</a>
+                                <a class="dropdown-item" href="/languages">Languages</a>
+                                <a class="dropdown-item" href="/genres">Genres</a>
+                            </div>
                         </li>
                     </ul>
                 </div>

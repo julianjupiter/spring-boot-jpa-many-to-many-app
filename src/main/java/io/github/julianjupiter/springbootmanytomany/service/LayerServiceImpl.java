@@ -10,7 +10,7 @@ import java.util.Optional;
 @Service
 @Transactional
 public class LayerServiceImpl implements LayerService {
-    private LayerRepository layerRepository;
+    private final LayerRepository layerRepository;
 
     public LayerServiceImpl(LayerRepository layerRepository) {
         this.layerRepository = layerRepository;

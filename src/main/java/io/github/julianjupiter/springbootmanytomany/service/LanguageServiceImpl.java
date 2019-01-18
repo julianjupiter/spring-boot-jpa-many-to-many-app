@@ -12,7 +12,7 @@ import java.util.Optional;
 @Service
 @Transactional
 public class LanguageServiceImpl implements LanguageService {
-    private LanguageRepository languageRepository;
+    private final LanguageRepository languageRepository;
 
     public LanguageServiceImpl(LanguageRepository languageRepository) {
         this.languageRepository = languageRepository;

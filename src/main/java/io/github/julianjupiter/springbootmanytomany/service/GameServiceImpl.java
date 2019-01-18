@@ -10,7 +10,7 @@ import java.util.Optional;
 @Service
 @Transactional
 public class GameServiceImpl implements GameService {
-    private GameRepository gameRepository;
+    private final GameRepository gameRepository;
 
     public GameServiceImpl(GameRepository gameRepository) {
         this.gameRepository = gameRepository;

@@ -22,6 +22,8 @@
                 <tr class="text-white">
                     <th class="bg-dark" th:text="#{game.id}">ID</th>
                     <th class="bg-dark" th:text="#{game.name}">Title</th>
+                    <th class="bg-dark" th:text="#{game.language}">Language</th>
+                    <th class="bg-dark" th:text="#{game.genre}">Genre</th>
                     <th class="bg-dark" th:text="#{game.action}">Action</th>
                 </tr>
                 </thead>
@@ -30,6 +32,8 @@
                     <tr th:each="game : ${games}">
                         <th th:text="${game.id}" scope="row"></th>
                         <td th:text="${game.name}"></td>
+                        <td><span class="badge badge-pill badge-primary" th:each="language : ${game.languages}" th:text="${language.name}">Language</span></td>
+                        <td><span class="badge badge-pill badge-success" th:each="genre : ${game.genres}" th:text="${genre.name}">Genre</span></td>
                         <td class="text-center">
                             <div class="btn-group" role="group" aria-label="Action Buttons">
                                 <a th:href="@{/games/view/{id}(id=${game.id})}" class="btn btn-info btn-sm"><i class="far fa-eye"></i></a>

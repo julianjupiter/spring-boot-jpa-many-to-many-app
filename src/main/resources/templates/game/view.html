@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <th:block th:include="fragments/header :: head(page=#{page.games}, action=#{action.view})"></th:block>
+    </head>
+    <body>
+        <header th:replace="fragments/header :: header(#{page.games})"></header>
+        <main class="container">
+            <div class="row">
+                <div class="col-8 offset-2 mx-auto">
+                    <div class="card">
+                        <div class="card-header bg-dark text-center text-white" th:text="#{action.view} + ' ' + #{page.games}">View Game</div>
+                        <div class="card-body">
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <th class="text-right border-0" scope="row" th:text="#{game.id}">ID</th>
+                                        <td class="border-0" id="id" th:text="${game.id}"></td>
+                                    </tr>
+                                    <tr>
+                                        <th class="text-right border-0" scope="row" th:text="#{game.name}">Name</th>
+                                        <td class="border-0" id="title" th:text="${game.name}"></td>
+                                    </tr>
+                                    <tr>
+                                        <th class="text-right border-0" scope="row" th:text="#{game.language}">Language</th>
+                                        <td class="border-0" id="language">
+                                            <span class="badge badge-pill badge-primary" th:each="language : ${game.languages}" th:text="${language.name}">Language</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th class="text-right border-0" scope="row" th:text="#{game.genre}">Genre</th>
+                                        <td class="border-0" id="genre">
+                                            <span class="badge badge-pill badge-success" th:each="genre : ${game.genres}" th:text="${genre.name}">Genre</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th class="text-right border-0" scope="row" th:text="#{game.screenshot}">Screenshot</th>
+                                        <td class="border-0" id="screenshot">
+                                            <img th:each="screenshot : ${game.screenshots}" th:src="${screenshot.path}" th:alt="${screenshot.name}" th:title="${screenshot.name}" class="border border-warning rounded mr-1" style="height:100px;width:100px;">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th class="text-right border-0" scope="row" th:text="#{game.video}">Video</th>
+                                        <td class="border-0" id="game">
+                                            <video th:each="game : ${game.videos}" th:src="${game.path}" th:alt="${game.name}"  th:title="${game.name}" class="border border-warning rounded mr-1" style="height:200px;width:300px;" controls>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="card-footer text-muted text-right">
+                            <a href="/games" class="btn btn-secondary btn-sm"><i class="fas fa-chevron-circle-left"></i></a>
+                            <a th:href="@{/games/edit/{id}(id=${game.id})}">
+                                <button type="submit" class="btn btn-primary btn-sm"><i class="far fa-edit"></i></button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <footer th:replace="fragments/footer :: footer"></footer>
+        <div th:replace="fragments/footer :: script"></div>
+    </body>
+</html>

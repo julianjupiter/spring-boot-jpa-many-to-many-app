@@ -8,7 +8,7 @@
 <main class="container">
     <div class="row">
         <div class="col-8 offset-2">
-            <form action="/games/create" method="post" th:object="${game}">
+            <form action="/games/create" enctype="multipart/form-data" method="post" th:object="${game}">
                 <div class="card">
                     <div class="card-header bg-dark text-center text-white" th:text="#{action.create} + ' ' + #{page.games}">Create Game</div>
                     <div class="card-body">
@@ -22,6 +22,30 @@
                             <select class="form-control custom-select" id="language" th:field="*{languages}" multiple>
                                 <option th:each="language : ${languages}" th:value="${language.id}" th:text="${language.name}">Language</option>
                             </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="genre" th:text="#{game.genre}">Genre</label>
+                            <select class="form-control custom-select" id="genre" th:field="*{genres}" multiple>
+                                <option th:each="genre : ${genres}" th:value="${genre.id}" th:text="${genre.name}">Genre</option>
+                            </select>
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="screenshotGroup" th:text="#{game.screenshot}">Screenshot</span>
+                            </div>
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="screenshotFiles" name="screenshotFiles" aria-describedby="screenshotGroup" multiple>
+                                <label class="custom-file-label" for="screenshotFiles">Choose files</label>
+                            </div>
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="videoGroup" th:text="#{game.video}">Video</span>
+                            </div>
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="videoFiles" name="videoFiles" aria-describedby="videoGroup" multiple>
+                                <label class="custom-file-label" for="videoFiles">Choose files</label>
+                            </div>
                         </div>
                     </div>
                     <div class="card-footer text-muted text-right">

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/layers")
 public class LayerController {
-    private LayerService layerService;
+    private final LayerService layerService;
 
     public LayerController(LayerService layerService) {
         this.layerService = layerService;

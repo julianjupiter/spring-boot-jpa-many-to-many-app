@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <th:block th:include="fragments/header :: head(page=#{page.genres}, action=#{action.list})"></th:block>
+</head>
+<body>
+<header th:replace="fragments/header :: header(page=#{page.genres})"></header>
+<main class="container">
+    <div class="row">
+        <div class="col">
+            <th:block th:if="${not #strings.isEmpty(message)}">
+                <div class="alert alert-success alert-dismissible fade show col-4 offset-4" role="alert">
+                    <span th:text="${message}"></span>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </th:block>
+            <a href="/genres/create" class="btn btn-primary"><i class="far fa-plus-square"></i></a>
+            <table id="genreTable" class="table" style="margin-top:10px;">
+                <thead>
+                <tr class="text-white">
+                    <th class="bg-dark" th:text="#{genre.id}">ID</th>
+                    <th class="bg-dark" th:text="#{genre.name}">Name</th>
+                    <th class="bg-dark" th:text="#{genre.action}">Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <div th:if="!${#lists.isEmpty(genres)}">
+                    <tr th:each="genre : ${genres}">
+                        <th th:text="${genre.id}" scope="row"></th>
+                        <td th:text="${genre.name}"></td>
+                        <td class="text-center">
+                            <div class="btn-group" role="group" aria-label="Action Buttons">
+                                <a th:href="@{/genres/view/{id}(id=${genre.id})}" class="btn btn-info btn-sm"><i class="far fa-eye"></i></a>
+                                <a th:href="@{/genres/edit/{id}(id=${genre.id})}" class="btn btn-success btn-sm"><i class="far fa-edit"></i></a>
+                                <a th:href="@{/genres/delete/{id}(id=${genre.id})}" class="btn btn-danger btn-sm"><i class="far fa-trash-alt"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+                </div>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>
+<footer th:replace="fragments/footer :: footer"></footer>
+<div th:replace="fragments/footer :: script"></div>
+</body>
+</html>
